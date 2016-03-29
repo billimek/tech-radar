@@ -77,7 +77,7 @@ cuControllers.controller('GroupController', ['$scope', '$log', '$sce', 'Technolo
          */
         $scope.addGroup = function () {
             $modal.open({
-                templateUrl: '/apps/static/partials/groupsCreate.html',
+                templateUrl: '/static/partials/groupsCreate.html',
                 controller: 'GroupCreateController',
                 size: 'sm',
                 backdrop: 'static',
@@ -98,7 +98,7 @@ cuControllers.controller('GroupController', ['$scope', '$log', '$sce', 'Technolo
         $scope.deleteGroup = function (group) {
             var delete_group = true;
             $modal.open({
-                templateUrl: '/apps/static/partials/groupsCreate.html',
+                templateUrl: '/static/partials/groupsCreate.html',
                 controller: 'GroupCreateController',
                 size: 'sm',
                 backdrop: 'static',
@@ -299,7 +299,7 @@ cuControllers.controller('TechController', ['$scope', '$sce' , '$log', 'Technolo
                 'tech': tech
             };
             $modal.open({
-                templateUrl: '/apps/static/partials/techDelete.html',
+                templateUrl: '/static/partials/techDelete.html',
                 controller: 'TechDeleteController',
                 size: 'sm',
                 backdrop: 'static',
@@ -445,7 +445,7 @@ cuControllers.controller('TechController', ['$scope', '$sce' , '$log', 'Technolo
             var editInfo = (view) ? false : true;
             var size = 'lg';
             $modal.open({
-                templateUrl: '/apps/static/partials/techInfo.html',
+                templateUrl: '/static/partials/techInfo.html',
                 controller: 'TechInfoController',
                 size: size,
                 backdrop: 'static',
