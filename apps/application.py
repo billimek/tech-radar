@@ -8,8 +8,7 @@ __doc__ = "Main Application file where all the API's are defined"
 from flask import Flask, request
 from flask.templating import render_template
 from flask.wrappers import Response
-import logging
-import json
+import logging, json, sys
 
 from apps.radarDBQuery import create_table,get_group_id, update_technology_group, add_technology_group, get_technology_list, \
     delete_technology_group, get_groups_list, add_groups, delete_groups
@@ -25,7 +24,7 @@ app.config.from_object('apps.app_config')
 '''
     Logging
 '''
-logging.basicConfig(filename='techradar.log', level=logging.DEBUG)
+logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
 log = logging.getLogger()
 
 '''
