@@ -13,26 +13,23 @@ The app has a landing page that displays all the groups that belong to the organ
 
 **WEB URLs**  :
 
-   **/** or **/#/groups** -- Landing page  with the list of groups
-   **/#/radar/<group_name>** -- Technology radar for that group
-   **/#/admin** -- Loads the landing page in **Admin mode** -- that enables you to add/edit group from the landing page
-   and when navigated to the radar page(**/#/radar/aurora?update=true**) from here it adds a flag **?update** as true
-   and the radar is also in edit mode.
-  This app is an AngularJS based Flask application running on SQLite DB that can be easily switched to real time DB.
+* **/** or **/#/groups** -- Landing page  with the list of groups
+* **/#/radar/<group_name>** -- Technology radar for that group
+* **/#/admin** -- Loads the landing page in **Admin mode** -- that enables you to add/edit group from the landing page and when navigated to the radar page(**/#/radar/aurora?update=true**) from here it adds a flag **?update** as true and the radar is also in edit mode.
+
+This app is an AngularJS based Flask application running on SQLite DB that can be easily switched to real time DB.
 
 
 **API URLS**:
 
-**/groups** [**GET**] -- List of Groups in the Organization
-**/groups** [**POST**] -- Create groups based on the JSON  ({groups: ["TEST", "TESTGROUP"]}) passed
-**/groups/delete** [**POST**] -- Delete groups based on the  group name in JSON  ({groups: "testgroup"}) passed
-**/technology?group=<group_name>**[**GET**] -- Get the list of Technologies for that group
-**/technology**[**POST**] -- Create a technology for the group based on the JSON
-sent({"category":"Tools","status":"Adopt","tech":{"description":""},"group":"cloud","technology":"GIT","description":""})
-**/technology?update=true**[**POST**] -- Update a technology for the group based on the JSON
-sent({"category":"Tools","status":"Adopt","tech":{"description":""},"group":"cloud","technology":"GIT","description":""})
-**/technology/delete**[**POST**] -- Delete a technology for a given group
-**/table** -- USED ONLY TO CREATE TABLES FOR THE FIRST TIME. DON'T USE IT ONCE TABLES ARE CREATED.
+* **/groups** [**GET**] -- List of Groups in the Organization
+* **/groups** [**POST**] -- Create groups based on the JSON  ({groups: ["TEST", "TESTGROUP"]}) passed
+* **/groups/delete** [**POST**] -- Delete groups based on the  group name in JSON  ({groups: "testgroup"}) passed
+* **/technology?group=<group_name>**[**GET**] -- Get the list of Technologies for that group
+* **/technology**[**POST**] -- Create a technology for the group based on the JSON sent({"category":"Tools","status":"Adopt","tech":{"description":""},"group":"cloud","technology":"GIT","description":""})
+* **/technology?update=true**[**POST**] -- Update a technology for the group based on the JSON sent({"category":"Tools","status":"Adopt","tech":{"description":""},"group":"cloud","technology":"GIT","description":""})
+* **/technology/delete**[**POST**] -- Delete a technology for a given group
+* **/table** -- USED ONLY TO CREATE TABLES FOR THE FIRST TIME. DON'T USE IT ONCE TABLES ARE CREATED.
 
 # Requirements
  For **Build Process**
@@ -46,9 +43,11 @@ Based on the technology used for development
 # Build Process
 Make sure to have [NodeJS] and [Grunt] installed to build all the assets needed for the application. Once you have the above downloaded, do the following
 
-    cd technolody-radar
-    npm install
-    grunt
+```
+cd technolody-radar
+npm install
+grunt
+```
 
 This will minify and concat all the css and js needed for the application and place it under **static/assets/**.
 
@@ -76,27 +75,34 @@ Once above is completed, you should have your app up and running.
 ### Using Cloud Foundry
 
 ##### Setup
- 1. You need to have Cloud Foundry CLI installed if not do so from [Cloud Foundry CLI].
- 2. Make sure to have an account at one of the [Cloud Foundry endpoints].
- 3. Through CF CLI, login into the corresponding endpoint. For example, lets say you have an account for   [Console Non Production]  and want to deploy it to it,then you will have to login into [API Non Production] using
+1. You need to have Cloud Foundry CLI installed if not do so from [Cloud Foundry CLI].
+2. Make sure to have an account at one of the [Cloud Foundry endpoints].
+3. Through CF CLI, login into the corresponding endpoint. For example, lets say you have an account for   [Console Non Production]  and want to deploy it to it,then you will have to login into [API Non Production] using
 
-        cf login
-        > Enter the API end point here
-        > Enter the email and password you have for that account
-        > Select space if any
+```
+cf login
+> Enter the API end point here
+> Enter the email and password you have for that account
+> Select space if any
+```
 
- 4. If you want to use a DB then update the values for the **SQLALCHEMY_DATABASE_URI** in app_config.py with the DB info. For example for a SQL Db it would be of the following format
-    **SQLALCHEMY_DATABASE_URI = 'mysql://username:password@ip-address/db_name'**
- 5. Make sure you have the **procfile, manifest.yml, .cfignore files** under the working directory, copy the files from cloud_foundry folder into the current directory.
+4. If you want to use a DB then update the values for the **SQLALCHEMY_DATABASE_URI** in app_config.py with the DB info. For example for a SQL Db it would be of the following format
+    `SQLALCHEMY_DATABASE_URI = 'mysql://username:password@ip-address/db_name'`
+5. Make sure you have the **procfile, manifest.yml, .cfignore files** under the working directory, copy the files from cloud_foundry folder into the current directory.
 
-        cp cloud_foundry/* .
- 6. **NOTE**: For Windows, there is an issue with node_modules folder whenwe deploy the code to Cloud Foundry. MAke sure to remove the node_modules folder once assests folder has all the js and css files. [node_module_issue]
+```
+cp cloud_foundry/* .
+```
+
+6. **NOTE**: For Windows, there is an issue with node_modules folder whenwe deploy the code to Cloud Foundry. MAke sure to remove the node_modules folder once assests folder has all the js and css files. [node_module_issue]
 
 ##### Deployment
 1. Make sure you are inside the working directory (**technology-radar**)
 2. Run the following to push the code to the endpoint
 
-        cf push technology-radar
+```
+cf push technology-radar
+```
 
 3. Once above is completed, you should have your app up and running at http://technology-radar.apps-np.homedepot.com/ .
 
@@ -108,16 +114,21 @@ You can deploy the code locally and develop it using virtualenv.
 1. Make sure to have python installed in your system.
 2. Run the following commands to get the app running locally
 
-        cd technology-radar
-        virtualenv tech-radar
-        pip install -r requirements
+```
+cd technology-radar
+virtualenv tech-radar
+pip install -r requirements
+```
 
 3. If you want to use a DB then update the values for the **SQLALCHEMY_DATABASE_URI** in app_config.py with the DB info. For example for a SQL Db it would be of the following format
-    **SQLALCHEMY_DATABASE_URI = 'mysql://username:password@ip-address/db_name'**
+    `SQLALCHEMY_DATABASE_URI = 'mysql://username:password@ip-address/db_name'`
 
 ##### Deployment
 1. Run the app locally with
-      **python wsgi.py**
+
+```
+python wsgi.py
+```
 
 Once above is completed, you should have your app up and running.
 
@@ -174,5 +185,3 @@ Open source under Apache License v2.0 (http://www.apache.org/licenses/LICENSE-2.
    [Console Non Production]: <https://console.run-np.homedepot.com>
    [API Non Production]: <https://api.run-np.homedepot.com>
    [node_module_issue]:<https://developer.ibm.com/answers/questions/29227/why-is-cf-push-choking-on-a-file-thats-in-cfignore.html>
-
-
