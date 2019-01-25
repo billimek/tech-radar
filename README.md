@@ -44,7 +44,7 @@ Based on the technology used for development
 Make sure to have [NodeJS] and [Grunt] installed to build all the assets needed for the application. Once you have the above downloaded, do the following
 
 ```
-cd technolody-radar
+cd technology-radar
 npm install
 grunt
 ```
@@ -104,7 +104,7 @@ cp cloud_foundry/* .
 cf push technology-radar
 ```
 
-3. Once above is completed, you should have your app up and running at http://technology-radar.apps-np.homedepot.com/ .
+3. Once above is completed, you should have your app up and running at http://technology-radar.{cloud-foundry-domain}/ .
 
 ### Local Development using Virtual Environment
 You can deploy the code locally and develop it using virtualenv.
